@@ -10,3 +10,21 @@ primary_region = 'sin'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 80
+  [[services.ports]]
+    handlers = ['http']
+    port = 80
+  [[services.ports]]
+    handlers = ['tls', 'http']
+    port = 443
+
+[checks]
+  [checks.status]
+    port = 80
+    type = 'http'
+    interval = '10s'
+    timeout = '2s'
+    path = '/'
