@@ -9,19 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-      # Tambahan langkah agar server otomatis menginstal vendor PHP (Composer)
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          tools: composer
-
-      - name: Install Dependencies
-        run: composer install --no-dev --optimize-autoloader
-
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      
       - run: flyctl deploy --remote-only
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
