@@ -16,9 +16,11 @@ Route::get('/contact', [FrontController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontController::class, 'sendContact'])->name('contact.send');
 
 
-// 2. AUTO-REDIRECTS (Tambahan baru agar tidak 404)
+// 2. AUTO-REDIRECTS (Wajib Login)
+Route::middleware(['auth'])->group(function () {
     Route::redirect('/admin', '/admin/dashboard');
     Route::redirect('/dashboard', '/admin/dashboard');
+});
 
 // 3. BACKEND ROUTES (Admin - Dilindungi Middleware Auth)
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
