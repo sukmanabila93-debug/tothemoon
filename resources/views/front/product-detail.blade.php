@@ -26,12 +26,12 @@
                     
                     <!-- Foto Galeri 2 (Hanya muncul jika diisi di database) -->
                     @if(!empty($product->gallery_images['image_2']))
-                    <img src="{{ asset('storage/' . $product->gallery_images['image_2']) }}" onclick="swapImage(this)" class="thumbnail-item w-full aspect-square object-cover border border-gray-200 cursor-pointer hover:border-gray-900 rounded-sm transition-all duration-300">
+                    <img src="{{ asset('storage/' . $product->gallery_images['image_2']) }}" onclick="swapImage(this)" class="thumbnail-item w-full aspect-square object-cover border border-gray-200 cursor-pointer hover:border-gray-900 rounded-sm transition-all duration-300" onerror="this.src='{{ asset($product->gallery_images['image_2']) }}'">
                     @endif
 
                     <!-- Foto Galeri 3 (Hanya muncul jika diisi di database) -->
                     @if(!empty($product->gallery_images['image_3']))
-                    <img src="{{ asset('storage/' . $product->gallery_images['image_3']) }}" onclick="swapImage(this)" class="thumbnail-item w-full aspect-square object-cover border border-gray-200 cursor-pointer hover:border-gray-900 rounded-sm transition-all duration-300">
+                    <img src="{{ asset('storage/' . $product->gallery_images['image_3']) }}" onclick="swapImage(this)" class="thumbnail-item w-full aspect-square object-cover border border-gray-200 cursor-pointer hover:border-gray-900 rounded-sm transition-all duration-300" onerror="this.src='{{ asset($product->gallery_images['image_3']) }}'">
                     @endif
 
                     @php
