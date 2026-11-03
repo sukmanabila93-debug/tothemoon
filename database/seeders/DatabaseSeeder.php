@@ -705,5 +705,13 @@ Membangun komunitas yang percaya bahwa keterbatasan bukan alasan untuk berhenti 
         foreach ($contactMessages as $m) {
             DB::table('contact_messages')->updateOrInsert(['id' => $m['id']], $m);
         }
+
+        // Sinkronisasi PostgreSQL sequence auto-increment ID
+        if (DB::getDriverName() === 'pgsql') {
+            $tables = ['users', 'categories', 'products', 'web_settings', 'contact_messages'];
+            foreach ($tables as $table) {
+                DB::statement("SELECT setval(pg_get_serial_sequence('{$table}', 'id'), coalesce(max(id), 1)) FROM {$table}");
+            }
+        }
     }
 }
