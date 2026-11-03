@@ -29,7 +29,6 @@ RUN composer install --no-dev --optimize-autoloader
 
 # Set Apache DocumentRoot ke folder public Laravel
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-Vérifiez / Sedang disesuaikan...
 RUN sed -ri -s 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -s 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
